@@ -1,0 +1,16 @@
+.git*
+node_modules
+.idea
+.env
+.env-dist
+.dockerignore
+.eslintrc
+.prettierrc
+.huskyrc
+.gitignore
+Dockerfile
+spec
+test
+temp
+**/tmp
+docker-compose.yml

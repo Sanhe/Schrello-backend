@@ -1,0 +1,45 @@
+version: '3'
+
+services:
+  db:
+    image: mongo
+    ports:
+      - '27017:27017'
+
+  api:
+    build:
+      context: ./api
+      dockerfile: ./Dockerfile
+    links:
+      - db
+    ports:
+      - '4690:5000'
+    volumes:
+      - ./api/src:/usr/src/app/src
+      - ./api/node_modules:/usr/src/app/node_modules
+    working_dir: /usr/src/app
+    depends_on:
+      - db
+    networks:
+      - app-network
+
+  nginx:
+    restart: always
+    build:
+      context: ./nginx
+      dockerfile: ./Dockerfile
+    volumes:
+      - ./nginx/conf:/etc/nginx/conf.d
+      - ./nginx/logs:/var/log/nginx/
+    links:
+      - api
+    ports:
+      - '4660:80'
+    depends_on:
+      - api
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
