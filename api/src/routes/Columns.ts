@@ -54,7 +54,7 @@ router.put("/update", async (req: Request, res: Response) => {
 
 router.delete("/delete/:id", async (req: Request, res: Response) => {
   const { id } = req.params as ParamsDictionary;
-  await columnDao.delete(Number(id));
+  await columnDao.delete(id);
   return res.status(OK).end();
 });
 

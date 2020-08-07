@@ -3,18 +3,18 @@ import {MongoDao} from "@daos/MongoDb/MongoDao";
 import ColumnModel from "@daos/Column/ColumnModelMongo";
 
 export interface IColumnDao {
-  getOne: (columnId: number) => Promise<IColumn | null>;
+  getOne: (columnId: string) => Promise<IColumn | null>;
   getAll: () => Promise<IColumn[]>;
   add: (user: IColumn) => Promise<void>;
   update: (user: IColumn) => Promise<void>;
-  delete: (columnId: number) => Promise<void>;
+  delete: (columnId: string) => Promise<void>;
 }
 
 class ColumnDao extends MongoDao implements IColumnDao {
   /**
    * @param columnId
    */
-  public async getOne(columnId: number): Promise<IColumn | null> {
+  public async getOne(columnId: string): Promise<IColumn | null> {
     // TODO
     return [] as any;
   }
@@ -65,7 +65,7 @@ class ColumnDao extends MongoDao implements IColumnDao {
    *
    * @param columnId
    */
-  public async delete(columnId: number): Promise<void> {
+  public async delete(columnId: string): Promise<void> {
     // TODO
     return {} as any;
   }

@@ -1,5 +1,5 @@
 export interface IColumn {
-  columnId: number;
+  columnId: string;
   boardId: string;
   title: string;
   backgroundColorId: string;
@@ -7,7 +7,7 @@ export interface IColumn {
 }
 
 class Column implements IColumn {
-  public columnId: number;
+  public columnId: string;
 
   public boardId: string;
 

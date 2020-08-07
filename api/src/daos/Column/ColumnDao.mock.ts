@@ -1,10 +1,10 @@
 import { IColumn } from "@entities/Column";
-import { getRandomInt } from "@shared/functions";
+import { getRandomString } from "@shared/functions";
 import { MockDaoMock } from "../MockDb/MockDao.mock";
 import { IColumnDao } from "./ColumnDao";
 
 class ColumnDao extends MockDaoMock implements IColumnDao {
-  public async getOne(columnId: number): Promise<IColumn | null> {
+  public async getOne(columnId: string): Promise<IColumn | null> {
     try {
       const db = await super.openDb();
       for (const column of db.columns) {
@@ -30,7 +30,7 @@ class ColumnDao extends MockDaoMock implements IColumnDao {
   public async add(column: IColumn): Promise<void> {
     try {
       const db = await super.openDb();
-      column.columnId = getRandomInt();
+      column.columnId = getRandomString();
       db.users.push(column);
       await super.saveDb(db);
     } catch (err) {
@@ -54,7 +54,7 @@ class ColumnDao extends MockDaoMock implements IColumnDao {
     }
   }
 
-  public async delete(columnId: number): Promise<void> {
+  public async delete(columnId: string): Promise<void> {
     try {
       const db = await super.openDb();
       for (let i = 0; i < db.columns.length; i++) {

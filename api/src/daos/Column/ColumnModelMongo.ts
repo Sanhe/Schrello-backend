@@ -2,10 +2,10 @@ import mongoose from "mongoose";
 
 const columnSchema = new mongoose.Schema(
     {
-        // columnId: Number,
+        // columnId: string,
         // title: String
         // columnId: {
-        //     type: Number,
+        //     type: string,
         //     unique: true,
         //     required: true
         // },
