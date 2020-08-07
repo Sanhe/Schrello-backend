@@ -2,7 +2,7 @@ import { Request, Response, Router } from "express";
 import { BAD_REQUEST, CREATED, OK } from "http-status-codes";
 import { ParamsDictionary } from "express-serve-static-core";
 import { paramMissingError } from "@shared/constants";
-import ColumnDao from "@daos/Column/ColumnDao.mock";
+import ColumnDao from "@daos/Column/ColumnDao";
 
 // Init shared
 const router = Router();

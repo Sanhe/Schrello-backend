@@ -1,4 +1,6 @@
 import { IColumn } from "@entities/Column";
+import {MongoDao} from "@daos/MongoDb/MongoDao";
+import ColumnModel from "@daos/Column/ColumnModelMongo";
 
 export interface IColumnDao {
   getOne: (columnId: number) => Promise<IColumn | null>;
@@ -8,7 +10,7 @@ export interface IColumnDao {
   delete: (columnId: number) => Promise<void>;
 }
 
-class ColumnDao implements IColumnDao {
+class ColumnDao extends MongoDao implements IColumnDao {
   /**
    * @param columnId
    */
@@ -21,8 +23,24 @@ class ColumnDao implements IColumnDao {
    *
    */
   public async getAll(): Promise<IColumn[]> {
-    // TODO
-    return [] as any;
+    try {
+      let columns: any[];
+      columns = [];
+
+      await super.openDb();
+
+      await ColumnModel.find({},(err, cols) => {
+        if (err) {
+          throw err;
+        }
+
+        columns = cols.slice();
+      });
+
+      return columns as any;
+    } catch (err) {
+      throw err;
+    }
   }
 
   /**
